@@ -12,8 +12,8 @@ function BlogList() {
 
   const totalCount = blogs.posts.length;
   
-  const currentPaginationData = 
-            blogs.posts.slice(recs['firstRecord'], recs['lastRecord']);
+  const currentPaginationData = blogs.posts.slice(recs['firstRecord'], 
+                                                  recs['lastRecord']);
  
 
   const updateRowsPerPage = (choosedSize) => {
