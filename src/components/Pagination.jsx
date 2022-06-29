@@ -4,7 +4,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/outline";
 import usePagination, { DOTS } from "../hooks/usePagination";
 
 import PropTypes from "prop-types";
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { nanoid } from "nanoid";
 
 function Pagination({
@@ -21,6 +21,16 @@ function Pagination({
     pageSize,
   });
 
+  const [firstPageChecker, setfirstPageChecker] = useState(false);
+  const [lastPageChecker, setlastPageChecker] = useState(false);
+  const [isSelected, setIsSelected] = useState(false);
+
+
+  useEffect(() => {
+    currentPage == 1 ? setfirstPageChecker(true) : setfirstPageChecker(false);
+    currentPage == Math.ceil(totalCount/pageSize) ? setlastPageChecker(true) : setlastPageChecker(false);
+  });
+
   const onNext = () => {
     onPageChange(currentPage + 1);
   };
@@ -28,6 +38,7 @@ function Pagination({
   const onPrevious = () => {
     onPageChange(currentPage - 1);
   };
+
 
   return (
     <ul
@@ -42,7 +53,7 @@ function Pagination({
           // Do not remove the aria-label below, it is used for Hatchways automation.
           aria-label="Goto previous page"
           onClick={onPrevious}
-          disabled={false} // change this line to disable a button.
+          disabled={firstPageChecker} // change this line to disable a button.
         >
           <ChevronLeftIcon />
         </button>
@@ -63,7 +74,7 @@ function Pagination({
           <li
             key={key}
             className="paginationItem"
-            aria-current="false" // change this line to highlight a current page.
+            aria-current= {pageNumber == currentPage ? "page": false} // change this line to highlight a current page.
           >
             <button
               type="button"
@@ -84,7 +95,7 @@ function Pagination({
           // Do not remove the aria-label below, it is used for Hatchways automation.
           aria-label="Goto next page"
           onClick={onNext}
-          disabled={false} // change this line to disable a button.
+          disabled={lastPageChecker} // change this line to disable a button.
         >
           <ChevronRightIcon />
         </button>

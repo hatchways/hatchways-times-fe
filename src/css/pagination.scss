@@ -8,7 +8,7 @@
   .paginationItem {
     display: flex;
     button {
-      border: 1px solid rgb(0, 0, 0, 0.6);
+      border: none;
       background: transparent;
       height: 34px;
       width: 34px;
@@ -31,7 +31,7 @@
       button {
         background-color: rgba(159, 159, 159, 0.295);
         font-weight: 700;
-        text-decoration: underline;
+        // text-decoration: underline;
       }
     }
 
@@ -52,9 +52,14 @@
   }
 
   .paginationSelector {
-    background-color: transparent;
+    background-color: rgba(159, 159, 159, 0.295);
     border: none;
+    border-right: 10px solid transparent;
+    border-radius: 25px 25px;
     outline: none;
+    padding: 5px 0px 5px 10px;
     margin-left: 10px;
+    font-weight: bold;
   }
+  
 }
